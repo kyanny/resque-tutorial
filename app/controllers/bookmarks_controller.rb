@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class BookmarksController < ApplicationController
   # GET /bookmarks
   # GET /bookmarks.json
@@ -41,6 +42,7 @@ class BookmarksController < ApplicationController
   # POST /bookmarks.json
   def create
     @bookmark = Bookmark.new(params[:bookmark])
+    @bookmark.title = 'ただいまページのタイトルを取得中です。しばらくお待ちください。'
 
     respond_to do |format|
       if @bookmark.save
