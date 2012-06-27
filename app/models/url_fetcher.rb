@@ -4,7 +4,7 @@ class UrlFetcher
     open(url){ |f|
       title = (f.scan(/<title>(.*?)<\/title>/i).flatten)[1]
       bookmark = Bookmark.find(bookmark_id)
-      bookmark.title = title
+      bookmark.title = NKF.nkf('-m0 -w', title)
       bookmark.save
     }
   end
