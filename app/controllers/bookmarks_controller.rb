@@ -44,6 +44,8 @@ class BookmarksController < ApplicationController
 
     respond_to do |format|
       if @bookmark.save
+        Resque.enqueue(UrlFetcher, @bookmark.title, @bookmark.url)
+
         format.html { redirect_to @bookmark, notice: 'Bookmark was successfully created.' }
         format.json { render json: @bookmark, status: :created, location: @bookmark }
       else
