@@ -1,5 +1,5 @@
 class UrlFetcher
-  @queue = :fetch_title
+  @queue = :url_fetcher
   def self.perform(bookmark_id, url)
     html = Kernel.open(url).read
     title = (html.scan(/<title>(.*?)<\/title>/i).flatten).first
