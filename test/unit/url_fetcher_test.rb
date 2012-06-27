@@ -10,13 +10,7 @@ class UrlFetcherTest < ActiveSupport::TestCase
     io = stub('io', read: '<html><head><title>ライブドア</title></head><body>ライブドアのページだよー</body></html>')
     Kernel.stubs(:open).returns(io)
     UrlFetcher.perform(@bookmark.id, 'http://www.livedoor.com/')
-    assert true
+    @bookmark.reload
+    assert_equal 'ライブドア', @bookmark.title
   end
 end
-
-
-
-
-
-
-
