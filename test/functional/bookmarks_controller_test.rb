@@ -24,6 +24,11 @@ class BookmarksControllerTest < ActionController::TestCase
     assert_redirected_to bookmark_path(assigns(:bookmark))
   end
 
+  test 'create bookmark should enqueue Resque' do
+    Resque.expects(:enqueue)
+    post :create, bookmark: { comment: @bookmark.comment, url: @bookmark.url }
+  end
+
   test "should show bookmark" do
     get :show, id: @bookmark
     assert_response :success
