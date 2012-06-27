@@ -38,5 +38,5 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 group :test do
-  gem 'mocha'
+  gem 'mocha', require: false
 end
